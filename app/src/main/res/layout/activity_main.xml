@@ -38,7 +38,6 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:progress="5"
         android:splitTrack="false"
         android:thumb="@drawable/thumb1"
         app:layout_constraintBottom_toTopOf="@+id/seekbarPlayer2"
