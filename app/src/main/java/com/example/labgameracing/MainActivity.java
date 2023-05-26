@@ -1,14 +1,21 @@
 package com.example.labgameracing;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.animation.ObjectAnimator;
+import android.graphics.PorterDuff;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
 import java.util.Random;
+import java.util.concurrent.CompletableFuture;
 
 public class MainActivity extends AppCompatActivity {
     final int INIT_AMOUNT = 10000;
@@ -30,33 +37,44 @@ public class MainActivity extends AppCompatActivity {
         sbPlayer3 = findViewById(R.id.seekbarPlayer3);
         btnStart = findViewById(R.id.btnStart);
         btnReset = findViewById(R.id.btnReset);
-
+        int color = ContextCompat.getColor(this,R.color.orange);
         // Logic code
         tvCurrentAmount.setText(INIT_AMOUNT+"");
-        MakePlayerRun();
+        MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.music);
+        MakePlayerRun(mediaPlayer);
         ResetPlayer();
     }
 
-    void MakePlayerRun() {
+    void MakePlayerRun(MediaPlayer mediaPlayer) {
+
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                mediaPlayer.start();
                 Random random = new Random();
                 int progress1 = 0;
                 int progress2 = 0;
                 int progress3 = 0;
+                int height = 100;
+                int thumbWidth = 200;
                 boolean flag = true;
                 while (flag) {
-                    progress1 = random.nextInt(100-20+1)+20;
-                    progress2 = random.nextInt(100-20+1)+20;
-                    progress3 = random.nextInt(100-20+1)+20;
-                    if (progress1==100 || progress2==100 || progress3==100) {
+                    progress1 = 70 + random.nextInt(30) + 1;
+                    progress2 = 70 + random.nextInt(30) + 1;
+                    progress3 = 70 + random.nextInt(30) + 1;
+                    if (progress1 == 100 || progress2 == 100 || progress3 == 100) {
                         flag = false;
                     }
                 }
-                sbPlayer1.setProgress(progress1, true);
-                sbPlayer2.setProgress(progress2, true);
-                sbPlayer3.setProgress(progress3, true);
+                ObjectAnimator animation = ObjectAnimator.ofInt(sbPlayer1, "progress", 0, progress1);
+                animation.setDuration(12000);
+                animation.start();
+                ObjectAnimator animation1 = ObjectAnimator.ofInt(sbPlayer2, "progress", 0, progress2);
+                animation1.setDuration(12000);
+                animation1.start();
+                ObjectAnimator animation2 = ObjectAnimator.ofInt(sbPlayer3, "progress", 0, progress3);
+                animation2.setDuration(12000);
+                animation2.start();
             }
         });
     }
