@@ -15,7 +15,6 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
