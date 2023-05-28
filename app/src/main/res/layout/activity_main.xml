@@ -5,117 +5,150 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:background="@drawable/background"
     tools:context=".MainActivity">
 
     <SeekBar
         android:id="@+id/seekbarPlayer3"
         android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:progress="5"
+        android:splitTrack="false"
+        android:thumb="@drawable/thumb3"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/checkboxPlayer3"
-        app:layout_constraintTop_toBottomOf="@+id/seekbarPlayer2" />
-
-    <CheckBox
-        android:id="@+id/checkboxPlayer3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer3"
-        app:layout_constraintEnd_toStartOf="@+id/seekbarPlayer3"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/seekbarPlayer3"
-        app:layout_constraintVertical_bias="0.25" />
-
-    <SeekBar
-        android:id="@+id/seekbarPlayer2"
-        android:layout_width="280dp"
-        android:layout_height="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkboxPlayer2"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/seekbarPlayer2"
+        android:max="100"/>
 
     <CheckBox
         android:id="@+id/checkboxPlayer2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:buttonTint="#CCFFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/seekbarPlayer2"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/tvTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Racing Game"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53" />
 
     <SeekBar
         android:id="@+id/seekbarPlayer1"
         android:layout_width="280dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:splitTrack="false"
+        android:thumb="@drawable/thumb1"
+        android:progress="5"
         app:layout_constraintBottom_toTopOf="@+id/seekbarPlayer2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/checkboxPlayer1" />
+        app:layout_constraintStart_toEndOf="@+id/checkboxPlayer1"
+        android:max="100"/>
+
+    <CheckBox
+        android:id="@+id/checkboxPlayer3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:buttonTint="#CCFFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer3"
+        app:layout_constraintEnd_toStartOf="@+id/seekbarPlayer3"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/seekbarPlayer3"
+        app:layout_constraintVertical_bias="0.5" />
+
+    <EditText
+        android:id="@+id/etPayNumber"
+        style="@style/Widget.Material3.AutoCompleteTextView.OutlinedBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:background="#80FFFFFF"
+        android:ems="10"
+        android:hint="Bet amount"
+        android:inputType="number"
+        android:textColorHint="#348F4B"
+        app:layout_constraintBottom_toTopOf="@+id/seekbarPlayer1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <CheckBox
         android:id="@+id/checkboxPlayer1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:buttonTint="#CCFFFFFF"
         app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer1"
         app:layout_constraintEnd_toStartOf="@+id/seekbarPlayer1"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/seekbarPlayer1"
-        app:layout_constraintVertical_bias="0.875" />
+        app:layout_constraintVertical_bias="0.5" />
 
-    <Button
-        android:id="@+id/btnStart"
-        android:layout_width="wrap_content"
+    <SeekBar
+        android:id="@+id/seekbarPlayer2"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:text="Start"
+        android:progress="5"
+        android:splitTrack="false"
+        android:thumb="@drawable/thumb2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btnReset"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/seekbarPlayer3" />
+        app:layout_constraintStart_toEndOf="@+id/checkboxPlayer2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.53"
+        android:max="100"/>
 
     <Button
         android:id="@+id/btnReset"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="#80FFFFFF"
+        android:fontFamily="casual"
         android:text="Reset"
+        android:textColor="#348F4B"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/btnStart"
-        app:layout_constraintTop_toBottomOf="@+id/seekbarPlayer3" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.880" />
 
-    <EditText
-        android:id="@+id/etPayNumber"
-        android:layout_width="211dp"
-        android:layout_height="42dp"
-        android:ems="10"
-        android:hint="Số tiền cược"
-        android:inputType="number"
-        app:layout_constraintBottom_toTopOf="@+id/seekbarPlayer1"
-        app:layout_constraintEnd_toEndOf="parent"
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#80FFFFFF"
+        android:fontFamily="casual"
+        android:text="Start"
+        android:textColor="#348F4B"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnReset"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvTmp1" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.880" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="68dp"
+        android:fontFamily="casual"
+        android:text="Oggy Racing Game"
+        android:textColor="@color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group2"
@@ -127,34 +160,26 @@
         android:id="@+id/tvCurrentAmountLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Số tiền hiện có"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTmp1"
-        app:layout_constraintEnd_toStartOf="@+id/tvTmp1"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:fontFamily="serif-monospace"
+        android:text="Money:"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tvTmp1" />
-
-    <TextView
-        android:id="@+id/tvTmp1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=": "
-        app:layout_constraintBottom_toTopOf="@+id/etPayNumber"
-        app:layout_constraintEnd_toStartOf="@+id/tvCurrentAmount"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvCurrentAmountLabel"
-        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tvCurrentAmount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="serif-monospace"
         android:text="0000"
-        app:layout_constraintBottom_toBottomOf="@+id/tvTmp1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/tvTmp1"
-        app:layout_constraintTop_toTopOf="@+id/tvTmp1" />
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/tvCurrentAmountLabel"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
