@@ -1,4 +1,4 @@
-`# PRM_RacingGame - Group 1
+# PRM_RacingGame - Group 1
 ## Team member
 1. Vo Ngoc Truc Lam
 2. Dang Hoang Anh
@@ -14,4 +14,3 @@ When you add a new commit, it must follow this naming convention:
 ## Pull request convention
 You must create a pull request before your code is merged into main. The pull request must be followed this naming convention:
 **"[YourName][YourFunction]"**
-`
