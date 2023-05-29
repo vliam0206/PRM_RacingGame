@@ -142,19 +142,41 @@ public class MainActivity extends AppCompatActivity {
                 final int progressX1 = progress1;
                 final int progressX2 = progress2;
                 final int progressX3 = progress3;
-                int a = 0 ;
+                final int balance = Integer.parseInt(tvCurrentAmount.getText().toString());
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             Thread.sleep(11000);
-                            tvCurrentAmount.setText(calculateBetMoney(progressX1, progressX2, progressX3)+"");
+                             tvCurrentAmount.setText(calculateBetMoney(progressX1, progressX2, progressX3)+"");
                         } catch (Exception e){
                             e.printStackTrace();
                         }
 
                     }
                 });
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            Thread.sleep(12000);
+                            final int afterAmount = calculateBetMoney(progressX1,progressX2,progressX3);
+                            final int profit =(afterAmount - balance)/2;
+                            runOnUiThread(new Runnable() {
+                                public void run() {
+                                    if(balance < afterAmount ){
+                                        Toast.makeText(context,"You win " + profit ,Toast.LENGTH_SHORT).show();
+                                    } else {
+                                        Toast.makeText(context,"You lose " + profit ,Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                        } catch (Exception ex){
+
+                        }
+
+                    }
+                }).start();
 
                 ObjectAnimator animation = ObjectAnimator.ofInt(sbPlayer1, "progress", 5, progress1);
                 animation.setDuration(animationDuration);
@@ -187,7 +209,6 @@ public class MainActivity extends AppCompatActivity {
         int currentMoney = Integer.parseInt(tvCurrentAmount.getText().toString());
         if (!etPayNumber.getText().toString().equals("")) {
             int betMoney = Integer.parseInt(etPayNumber.getText().toString());
-
             if (checkedPlayer1) {
                 if (progress1 < progress2 || progress1 < progress3) {
                     currentMoney = currentMoney - betMoney;
