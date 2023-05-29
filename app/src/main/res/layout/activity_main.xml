@@ -195,5 +195,30 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+  
+    <View
+        android:id="@+id/divider"
+        android:layout_width="4dp"
+        android:layout_height="300dp"
+        android:layout_marginEnd="14dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer2"
+        app:layout_constraintEnd_toEndOf="@+id/seekbarPlayer2"
+        app:layout_constraintTop_toTopOf="@+id/seekbarPlayer2" />
 
+    <TextView
+        android:id="@+id/resultNoti"
+        android:layout_width="320dp"
+        android:layout_height="65dp"
+        android:background="#80FFFFFF"
+        android:fontFamily="casual"
+        android:text="Result..."
+        android:visibility="invisible"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.577"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
