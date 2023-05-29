@@ -56,36 +56,37 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.music);
         MakePlayerRun(mediaPlayer,this);
         ResetPlayer();
-        checkboxPlayer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                {
-                    checkboxPlayer2.setChecked(false);
-                    checkboxPlayer3.setChecked(false);
-                }
-            }
-        });
-        checkboxPlayer2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                {
-                    checkboxPlayer1.setChecked(false);
-                    checkboxPlayer3.setChecked(false);
-                }
-            }
-        });
-        checkboxPlayer3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                {
-                    checkboxPlayer2.setChecked(false);
-                    checkboxPlayer1.setChecked(false);
-                }
-            }
-        });
+//        Cho phep chon nhieu checkbox, da estimate so tien phu hop roi
+//        checkboxPlayer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b)
+//                {
+//                    checkboxPlayer2.setChecked(false);
+//                    checkboxPlayer3.setChecked(false);
+//                }
+//            }
+//        });
+//        checkboxPlayer2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b)
+//                {
+//                    checkboxPlayer1.setChecked(false);
+//                    checkboxPlayer3.setChecked(false);
+//                }
+//            }
+//        });
+//        checkboxPlayer3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+//            @Override
+//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+//                if(b)
+//                {
+//                    checkboxPlayer2.setChecked(false);
+//                    checkboxPlayer1.setChecked(false);
+//                }
+//            }
+//        });
 
     }
 
@@ -95,18 +96,18 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if(checkboxPlayer1.isChecked() == false && checkboxPlayer2.isChecked() == false && checkboxPlayer3.isChecked() == false){
-                    Toast.makeText(context, "Please choose one character", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Please choose one character", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 int currentAmount = Integer.parseInt(tvCurrentAmount.getText().toString());
                 if(etPayNumber.getText().toString().equals("")){
-                    Toast.makeText(context, "You must fill bet amount", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "You must fill bet amount", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 int betAmount = Integer.parseInt(etPayNumber.getText().toString());
                 if(betAmount > currentAmount){
-                    Toast.makeText(context, "Can not bet larger than your balance", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Can not bet larger than your balance", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(currentAmount <= 0){
@@ -115,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
                 if(betAmount == 0){
-                    Toast.makeText(context, "Your bet amount must be larger than 0", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Your bet amount must be larger than 0", Toast.LENGTH_SHORT).show();
                     return;
                 }
                 mediaPlayer.start();
