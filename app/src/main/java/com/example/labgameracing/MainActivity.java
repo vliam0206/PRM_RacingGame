@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                resultNoti.setVisibility(View.VISIBLE);
 
                 if(checkboxPlayer1.isChecked() == false && checkboxPlayer2.isChecked() == false && checkboxPlayer3.isChecked() == false){
                     Toast.makeText(context, "Please choose one character", Toast.LENGTH_SHORT).show();
@@ -104,6 +103,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, "Your bet amount must be larger than 0", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                resultNoti.setVisibility(View.VISIBLE);
                 mediaPlayer.start();
                 disable();
                 Random random = new Random();
@@ -232,9 +232,9 @@ public class MainActivity extends AppCompatActivity {
         if (IsWin(pg2, pg1, pg3)) { win2 = true;}
         if (IsWin(pg3, pg2, pg1)) { win3 = true;}
         s += "The player(s) "
-                + (win1 ? 1 : " ")
+                + (win1 ? 1: " ")
                 + (win2 ? 2: " ")
-                + (win3 ? 3 : " ")
+                + (win3 ? 3: " ")
                 + " won\n"
                 + "+"+ totalWin
                 + "\n"+ totalLose;

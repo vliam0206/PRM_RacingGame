@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background2"
+    android:background="@drawable/background5"
     tools:context=".MainActivity">
 
     <SeekBar
@@ -91,7 +91,7 @@
         android:layout_width="276dp"
         android:layout_height="53dp"
         android:layout_marginTop="128dp"
-        android:background="#80FFFFFF"
+        android:background="#ADFFFFFF"
         android:ems="10"
         android:hint="Bet amount"
         android:inputType="number"
@@ -158,14 +158,14 @@
     <View
         android:id="@+id/divider"
         android:layout_width="10dp"
-        android:layout_height="300dp"
-        android:layout_marginEnd="20dp"
+        android:layout_height="250dp"
+        android:layout_marginEnd="16dp"
         android:background="@drawable/finishline"
         android:translationZ="-5dp"
         app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer2"
         app:layout_constraintEnd_toEndOf="@+id/seekbarPlayer2"
         app:layout_constraintTop_toTopOf="@+id/seekbarPlayer2"
-        app:layout_constraintVertical_bias="0.444" />
+        app:layout_constraintVertical_bias="0.576" />
 
     <TextView
         android:id="@+id/tvCurrentAmount"
@@ -195,30 +195,20 @@
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-  
-    <View
-        android:id="@+id/divider"
-        android:layout_width="4dp"
-        android:layout_height="300dp"
-        android:layout_marginEnd="14dp"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="@+id/seekbarPlayer2"
-        app:layout_constraintEnd_toEndOf="@+id/seekbarPlayer2"
-        app:layout_constraintTop_toTopOf="@+id/seekbarPlayer2" />
 
     <TextView
         android:id="@+id/resultNoti"
-        android:layout_width="320dp"
-        android:layout_height="65dp"
+        android:layout_width="156dp"
+        android:layout_height="128dp"
         android:background="#80FFFFFF"
         android:fontFamily="casual"
+        android:gravity="center"
         android:text="Result..."
-        android:visibility="invisible"
         android:textAlignment="center"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.577"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.353" />
 </androidx.constraintlayout.widget.ConstraintLayout>
