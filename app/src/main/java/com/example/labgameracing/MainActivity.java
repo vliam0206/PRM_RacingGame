@@ -19,12 +19,16 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.snackbar.Snackbar;
+
 import java.util.Random;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ThreadPoolExecutor;
 
 public class MainActivity extends AppCompatActivity {
     final int INIT_AMOUNT = 10000;
-    TextView tvCurrentAmount;
+    TextView tvCurrentAmount, resultNoti;
     SeekBar sbPlayer1;
     SeekBar sbPlayer2;
     SeekBar sbPlayer3;
@@ -32,12 +36,17 @@ public class MainActivity extends AppCompatActivity {
     Button btnReset;
     CheckBox checkboxPlayer1, checkboxPlayer2, checkboxPlayer3;
     EditText etPayNumber;
+    int totalWin = 0;
+    int totalLose = 0;
+    public int numberchecked = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Bindings
         tvCurrentAmount = findViewById(R.id.tvCurrentAmount);
+        resultNoti = findViewById(R.id.resultNoti);
         sbPlayer1 = findViewById(R.id.seekbarPlayer1);
         sbPlayer2 = findViewById(R.id.seekbarPlayer2);
         sbPlayer3 = findViewById(R.id.seekbarPlayer3);
@@ -56,37 +65,6 @@ public class MainActivity extends AppCompatActivity {
         MediaPlayer mediaPlayer = MediaPlayer.create(this,R.raw.music);
         MakePlayerRun(mediaPlayer,this);
         ResetPlayer();
-//        Cho phep chon nhieu checkbox, da estimate so tien phu hop roi
-//        checkboxPlayer1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(b)
-//                {
-//                    checkboxPlayer2.setChecked(false);
-//                    checkboxPlayer3.setChecked(false);
-//                }
-//            }
-//        });
-//        checkboxPlayer2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(b)
-//                {
-//                    checkboxPlayer1.setChecked(false);
-//                    checkboxPlayer3.setChecked(false);
-//                }
-//            }
-//        });
-//        checkboxPlayer3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-//            @Override
-//            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-//                if(b)
-//                {
-//                    checkboxPlayer2.setChecked(false);
-//                    checkboxPlayer1.setChecked(false);
-//                }
-//            }
-//        });
 
     }
 
@@ -95,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         btnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                resultNoti.setVisibility(View.VISIBLE);
+
                 if(checkboxPlayer1.isChecked() == false && checkboxPlayer2.isChecked() == false && checkboxPlayer3.isChecked() == false){
                     Toast.makeText(context, "Please choose one character", Toast.LENGTH_SHORT).show();
                     return;
@@ -105,13 +85,18 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, "You must fill bet amount", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                int betAmount = Integer.parseInt(etPayNumber.getText().toString());
+                if (checkboxPlayer1.isChecked()) { numberchecked++;}
+                if (checkboxPlayer2.isChecked()) { numberchecked++;}
+                if (checkboxPlayer3.isChecked()) { numberchecked++;}
+                int betAmount = Integer.parseInt(etPayNumber.getText().toString()) * numberchecked;
                 if(betAmount > currentAmount){
-                    Toast.makeText(context, "Can not bet larger than your balance", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Can not bet larger than your balance." +
+                            "\nYou have: " + currentAmount +
+                            "\nYou bet: " + betAmount, Toast.LENGTH_SHORT).show();
                     return;
                 }
                 if(currentAmount <= 0){
-                    Toast.makeText(context, "Your balance can not play more,we will give u 10000 again", Toast.LENGTH_LONG).show();
+                    Toast.makeText(context, "Your balance can not play more,we will give you 10000 again. \n+ 10000", Toast.LENGTH_LONG).show();
                     tvCurrentAmount.setText("10000");
                     return;
                 }
@@ -143,16 +128,20 @@ public class MainActivity extends AppCompatActivity {
                 final int progressX2 = progress2;
                 final int progressX3 = progress3;
                 int a = 0 ;
+                int currentMoney = calculateBetMoney(progressX1, progressX2, progressX3);
+
+                String result =  ReslutMessage(progress1, progress2, progress3);
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
                         try {
                             Thread.sleep(11000);
-                            tvCurrentAmount.setText(calculateBetMoney(progressX1, progressX2, progressX3)+"");
+                            tvCurrentAmount.setText(currentMoney+"");
                         } catch (Exception e){
                             e.printStackTrace();
+                        }finally {
+                            resultNoti.setText(result);
                         }
-
                     }
                 });
 
@@ -177,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                 sbPlayer1.setProgress(5, true);
                 sbPlayer2.setProgress(5, true);
                 sbPlayer3.setProgress(5, true);
+                resultNoti.setVisibility(View.INVISIBLE);
             }
         });
     }
@@ -189,25 +179,32 @@ public class MainActivity extends AppCompatActivity {
             int betMoney = Integer.parseInt(etPayNumber.getText().toString());
 
             if (checkedPlayer1) {
-                if (progress1 < progress2 || progress1 < progress3) {
-                    currentMoney = currentMoney - betMoney;
-                } else if (progress1 >= progress2 && progress1 >= progress3) {
+                if (progress1 >= progress2 && progress1 >= progress3) {
                     currentMoney = currentMoney + betMoney;
+                    totalWin += betMoney;
+
+                } else {
+                    currentMoney = currentMoney - betMoney;
+                    totalLose -= betMoney;
+
                 }
             }
             if (checkedPlayer2) {
-                if (progress2 < progress1 || progress2 < progress3) {
-                    currentMoney = currentMoney - betMoney;
-
-                } else if (progress2 >= progress1 && progress2 >= progress3) {
+                if (progress2 >= progress1 && progress2 >= progress3) {
                     currentMoney = currentMoney + betMoney;
+                    totalWin += betMoney;
+                } else {
+                    currentMoney = currentMoney - betMoney;
+                    totalLose -= betMoney;
                 }
             }
             if (checkedPlayer3) {
-                if (progress3 < progress1 || progress3 < progress2) {
-                    currentMoney = currentMoney - betMoney;
-                } else if (progress3 >= progress1 && progress3 >= progress2) {
+                if (progress3 >= progress1 && progress3 >= progress2) {
                     currentMoney = currentMoney + betMoney;
+                    totalWin += betMoney;
+                } else{
+                    currentMoney = currentMoney - betMoney;
+                    totalLose -= betMoney;
                 }
             }
         }
@@ -223,5 +220,25 @@ public class MainActivity extends AppCompatActivity {
         checkboxPlayer1.setEnabled(true);
         checkboxPlayer2.setEnabled(true);
         checkboxPlayer3.setEnabled(true);
+    }
+    private boolean IsWin(int pg1, int pg2, int pg3) {
+        return (pg1 >= pg2 && pg1 >= pg3);
+    }
+    private  String ReslutMessage(int pg1, int pg2, int pg3) {
+        String s = "";
+        boolean win1 = false;
+        boolean win2 = false;
+        boolean win3 = false;
+        if (IsWin(pg1, pg2, pg3)) { win1 = true;}
+        if (IsWin(pg2, pg1, pg3)) { win2 = true;}
+        if (IsWin(pg3, pg2, pg1)) { win3 = true;}
+        s += "The player(s) "
+                + (win1 ? 1 : " ")
+                + (win2 ? 2: " ")
+                + (win3 ? 3 : " ")
+                + " won\n"
+                + "+"+ totalWin
+                + "\n"+ totalLose;
+        return s;
     }
 }
