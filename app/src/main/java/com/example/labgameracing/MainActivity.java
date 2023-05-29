@@ -166,6 +166,10 @@ public class MainActivity extends AppCompatActivity {
                 sbPlayer1.setProgress(10, true);
                 sbPlayer2.setProgress(10, true);
                 sbPlayer3.setProgress(10, true);
+                totalLose = 0;
+                totalWin = 0;
+                resultNoti.setText("Result...");
+                resultNoti.setVisibility(View.INVISIBLE);
             }
         });
     }
