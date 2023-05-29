@@ -145,13 +145,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
-                ObjectAnimator animation = ObjectAnimator.ofInt(sbPlayer1, "progress", 5, progress1);
+                ObjectAnimator animation = ObjectAnimator.ofInt(sbPlayer1, "progress", 10, progress1);
                 animation.setDuration(animationDuration);
                 animation.start();
-                ObjectAnimator animation1 = ObjectAnimator.ofInt(sbPlayer2, "progress", 5, progress2);
+                ObjectAnimator animation1 = ObjectAnimator.ofInt(sbPlayer2, "progress", 10, progress2);
                 animation1.setDuration(animationDuration);
                 animation1.start();
-                ObjectAnimator animation2 = ObjectAnimator.ofInt(sbPlayer3, "progress", 5, progress3);
+                ObjectAnimator animation2 = ObjectAnimator.ofInt(sbPlayer3, "progress", 10, progress3);
                 animation2.setDuration(animationDuration);
                 animation2.start();
                 thread.start();
@@ -163,10 +163,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 enable();
-                sbPlayer1.setProgress(5, true);
-                sbPlayer2.setProgress(5, true);
-                sbPlayer3.setProgress(5, true);
-                resultNoti.setVisibility(View.INVISIBLE);
+                sbPlayer1.setProgress(10, true);
+                sbPlayer2.setProgress(10, true);
+                sbPlayer3.setProgress(10, true);
             }
         });
     }
