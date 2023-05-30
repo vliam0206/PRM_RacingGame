@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, "You must fill bet amount", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                numberchecked = 0;
                 if (checkboxPlayer1.isChecked()) { numberchecked++;}
                 if (checkboxPlayer2.isChecked()) { numberchecked++;}
                 if (checkboxPlayer3.isChecked()) { numberchecked++;}
